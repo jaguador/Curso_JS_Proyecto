@@ -1,0 +1,23 @@
+// Panel de administracion: Servidor - Cliente usuario - Cliente administrador
+// Clientes
+	-- Login: Seleccionar usuario de entre los posibles y meter contraseña. Creacion de sesion cliente (usuario y administrador).
+	-- Acceso Usuario: 
+		* Listado de aplicaciones (con fecha de caducidad) : Al abrir una se abre nueva pestaña (Jquery) con el contenido estatico html de lo que seria la webapp
+		* Peticion de renovacion o de acceso a nueva aplicacion 
+			(Lista: Activas, Caducadas, Pendientes de verificacion. jQuery animar las peticiones concedidas o denegadas)
+		* Posibilidad de solicitud de asistencia remota (chat)
+		* Desconectar (fin sesion)
+	-- Acceso Administrador:
+		* Listado de usuarios conectados
+		* Log de accesos
+		* Panel de privilegios:
+			.Listado de peticiones de acceso y renovaciones de usuario (permitir/denegar)
+			.Listado de aplicaciones y usuarios para conceder acceso
+		* Mensajeria por usuario / Mensajeria global para todos los usuarios
+
+// Servidor
+	-- BBDD fichero:
+		* Listado de aplicaciones
+		* Listado de usuarios (contraseñas cifradas), con aplicaciones de acceso con fecha de caducidad
+		* Log de accesos
+	-- 

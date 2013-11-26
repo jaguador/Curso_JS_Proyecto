@@ -1,10 +1,34 @@
 var fs = require('fs');		// Acceso al sistema de archivos
+var express = require('express');
+var app = express();
 
-var usuarios = "";
+var usuarios = require('./usuarios.json');
+var aplicaciones = require('./aplicaciones.json');
+
+app.get('/usuarios', function (req, res) {   
+    res.contentType('application/json');
+	var users = new Array();
+	for (var i in usuarios) {
+		users[i] = {usuario: usuarios[i].usuario};
+	}
+    res.send( { usuarios:  users } );
+});
+
+app.get('/usuario_aplicaciones/:user', function (req, res) {   
+    res.contentType('application/json');
+	var users = new Array();
+	for (var i in usuarios) {
+		if ( usuarios[i].usuario == req.params.user) 
+			res.send( {aplicaciones: usuarios[i].aplicaciones} );
+	}
+});
 
 
-var accesos_json = new Array();				// Array de los accesos
+app.listen(8080);
+console.log('Server running at http://127.0.0.1:8080/');
 
+
+/*
 // Abrir el fichero de cabecera html
 fs.readFile('usuarios.json', 'utf8', function(err,datos) {
 	if (err) 
@@ -12,9 +36,11 @@ fs.readFile('usuarios.json', 'utf8', function(err,datos) {
 	// Se toma el html de la cabecera
 	console.log(datos);
 	usuarios = JSON.parse(datos);
+	//usuarios = datos;
+	console.log(usuarios);
 });
 //console.log(usuarios[0].usuario);
-
+*/
 /*
 // Crear servidor
 http.createServer(function (req, res) { 

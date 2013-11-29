@@ -3,26 +3,13 @@
   <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>	
 	<script type="text/javascript" src="js/lib_proyecto.js"></script>	
 	<STYLE type="text/css">
 		h1 {text-align:center}
-		#wrapperLogin {text-align: center;}
-		.cuadroUsuario {
-border-radius: 10px; // nivel de redondeo (puedes poner cuatro valores, uno para cada esquina)
-width: 80;
-height: 50px;
-line-height: 50px;
-background: #2D86CC;
-color: #FFF;
-opacity: 0.33;
-}
 	</style>  </head>
   <body>
 	<h1>LOGIN INTRANET</h1>
-	<p style="text-align:center"><b>Seleccionar Usuario</b></p>
-	<div id='wrapperLogin'></div>
+	<div id='containerLogin'></div>
 	<script type='text/javascript'>
 		$(document).ready(function() {
 			muestraUsuarios();

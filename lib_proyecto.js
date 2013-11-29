@@ -8,11 +8,29 @@ var url = "http://127.0.0.1:8080";
 
 function muestraUsuarios() {
 	$.get('/usuarios', function(data) {
-		var html = "";
+		var html = "<table width='60%' align='center' cellspacing=10 cellpadding=20><tr>";
 		for (var i in data.usuarios)
-			html += data.usuarios[i].usuario
-		$('#containerLogin').html(html);
-    });
+			html += "<td class='celdaUsuario' cellpadding=100 cellspacing=100><div class='cuadroUsuario' id='divUsuario"+data.usuarios[i].usuario+"'><b>"+data.usuarios[i].usuario+"</b></div></td>";
+// Hacerle toggle al pasar el raton
+// Animar
+			html += "</tr></table>";
+		$('#wrapperLogin').html(html);
+		
+		$('.cuadroUsuario').each(function() {
+			$(this).hover(
+				function(e) {
+					$(this).fadeTo("fast", 1);
+				},
+				function(e) {
+					$(this).fadeTo("fast", 0.33);
+				});
+			$(this).click(function(e) {
+					$(".txtPass").remove();
+					$(this).animate({height:100},200);
+					$(this).append("<p class='txtPass'><input type='password' size=3 ></p>");
+				});
+			});
+	});
 }
 
 

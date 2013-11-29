@@ -2,36 +2,27 @@ var fs = require('fs');		// Acceso al sistema de archivos
 var express = require('express');
 var app = express();
 
-// Add headers
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8080/usuarios');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
-
-
+// Lectura de datos estaticos para inicializacion (datos de ejemplo)
 var usuarios = require('./usuarios.json');
 var aplicaciones = require('./aplicaciones.json');
 
 var portada = fs.readFileSync('./login.html','utf8');
 
-app.get('/js/:page', function (req, res) { 
-    var js = fs.readFileSync(req.params.page);
-    res.contentType('text/javascript');
-    res.send(js);
+app.get('/js/:page', function (req, res) {
+	// Verificar servir solo los recursos permitidos
+	var allow = false;
+	switch (req.params.page) {
+		case 'lib_proyecto.js':
+			allow = true;
+			res.contentType('text/javascript');
+			break;
+		default:
+			allow = false;
+	}
+	if (allow) {
+		var recurso = fs.readFileSync(req.params.page);
+		res.send(recurso);
+	}
 });
 
 app.get('/', function (req, res) { 
